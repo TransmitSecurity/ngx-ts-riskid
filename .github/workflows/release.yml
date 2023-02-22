@@ -48,5 +48,4 @@ jobs:
         with:
           name: failure-data
           path: |
-            ./dist/
             /home/runner/.npm/_logs
