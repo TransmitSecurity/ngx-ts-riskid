@@ -12,7 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      NPM_VERSION: ${{ steps.new_npm_package_version.outputs.NPM_VERSION }}
+      NPM_VERSION: ${{ steps.package_version.outputs.NPM_VERSION }}
+      CURRENT_NPM_VERSION: ${{ steps.package_version.outputs.CURRENT_NPM_VERSION }}
 
     steps:
       - name: Checkout
@@ -47,18 +48,18 @@ jobs:
           yarn run test
 
       - name: Generate NPM Package Version
-        id: new_npm_package_version
+        id: package_version
         run: |
           cd projects/ngx-ts-riskid
           CURRENT_NPM_VERSION=`yarn --silent run ci-version`
+          echo "CURRENT_NPM_VERSION=${CURRENT_NPM_VERSION}" >> $GITHUB_OUTPUT
           echo "NPM_VERSION=${CURRENT_NPM_VERSION}-beta-${{ env.RUNID_VERSION_SUFFIX }}" >> $GITHUB_OUTPUT
 
       - name: Pack
         run: |
           cd dist/ngx-ts-riskid
-          CURRENT_NPM_VERSION=`yarn --silent run ci-version`
           yarn pack
-          mv transmitsecurity-ngx-ts-riskid-v${CURRENT_NPM_VERSION}.tgz ngx-ts-riskid-${{ steps.new_npm_package_version.outputs.NPM_VERSION }}.tgz
+          mv transmitsecurity-ngx-ts-riskid-v${{ steps.package_version.outputs.CURRENT_NPM_VERSION }}.tgz ngx-ts-riskid-${{ steps.package_version.outputs.NPM_VERSION }}.tgz
 
       - name: Archive NPM package
         uses: actions/upload-artifact@v3
