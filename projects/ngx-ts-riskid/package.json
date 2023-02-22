@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/TransmitSecurity/ngx-ts-riskid.git"
   },
-  "homepage": "https://github.com/TransmitSecurity/ngx-ts-riskid.git#projects/ngx-ts-riskid/README.md",
+  "homepage": "https://github.com/TransmitSecurity/ngx-ts-riskid/blob/main/projects/ngx-ts-riskid/README.md",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
