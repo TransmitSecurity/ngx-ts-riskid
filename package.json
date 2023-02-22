@@ -1,0 +1,51 @@
+{
+  "name": "@transmitsecurity/root-ngx-ts-riskid",
+  "version": "1.0.1",
+  "private": true,
+  "license" : "SEE LICENSE IN projects/ngx-ts-riskid/LICENSE",
+  "author": "RiskID Dev Team <rnd_riskid@transmitsecurity.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TransmitSecurity/ngx-ts-riskid.git"
+  },
+  "homepage": "https://github.com/TransmitSecurity/ngx-ts-riskid.git#projects/ngx-ts-riskid/README.md",
+  "scripts": {
+    "ng": "ng",
+    "clean": "rm -rf ./dist",
+    "prestart": "yarn build",
+    "start": "ng serve --open",
+    "build": "ng build ngx-ts-riskid && ng build demo-app",
+    "build:dev": "ng build ngx-ts-riskid --configuration development && ng build demo-app --configuration development",
+    "build-package": "ng build ngx-ts-riskid --configuration=production",
+    "watch": "ng build ngx-ts-riskid --watch --configuration development && ng build demo-app --watch --configuration development",
+    "test": "ng test ngx-ts-riskid",
+    "lint": "ng lint ngx-ts-riskid"
+  },
+  "dependencies": {
+    "@angular/common": "~9.1.13",
+    "@angular/compiler": "~9.1.13",
+    "@angular/core": "~9.1.13",
+    "@angular/platform-browser": "~9.1.13",
+    "@angular/platform-browser-dynamic": "~9.1.13",
+    "rxjs": "~6.5.4",
+    "zone.js": "~0.11.2"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.901.15",
+    "@angular-devkit/build-ng-packagr": "~0.901.15",
+    "@angular/cli": "~9.1.15",
+    "@angular/compiler-cli": "~9.1.13",
+    "@types/jasmine": "~3.5.0",
+    "@types/jasminewd2": "~2.0.3",
+    "codelyzer": "^5.1.2",
+    "karma": "~5.0.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "2.1.0",
+    "karma-coverage-istanbul-reporter": "~2.1.0",
+    "karma-jasmine": "~3.0.1",
+    "karma-jasmine-html-reporter": "^1.4.2",
+    "ng-packagr": "^9.0.0",
+    "tslint": "~6.1.0",
+    "typescript": "~3.8.3"
+  }
+}

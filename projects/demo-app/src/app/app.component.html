@@ -1,0 +1,39 @@
+
+<section id="demo">
+  <div>
+    <div class="main_container text-center">
+      <div class="logo_header">
+        <img src="../assets/logo.png" alt="RiskID logo"/>
+        <h2 class="header_title">
+          SDK Demo App
+        </h2>
+      </div>
+      <div class="events_container">
+        <div class="section_block">
+          <h3 class="section_title">Trigger action events:</h3>
+          <h3 class="sub_section_title">(trigger after some action try)</h3>
+          <div class="inputs_container">
+            <input id="user_name" #input1 class="default_input" type="text" placeholder="username (or some other input)"/>
+            <input id="user_password" class="default_input" type="text" placeholder="password (or some secondary input)"/>
+          </div>
+          <div class="events_buttons_container">
+            <button class="event_btn green_button" (click)="loginTriggered()">Login</button>
+            <button class="event_btn red_button" (click)="logoutTriggered()">Logout</button>
+            <button class="event_btn blue_button" (click)="registerTriggered()">Register</button>
+            <button class="event_btn gray_button" (click)="transactionTriggered()">Transaction</button>
+            <button class="event_btn black_button" (click)="passwordResetTriggered()">Password Reset</button>
+          </div>
+        </div>
+        <div class="section_block">
+          <h3 class="section_title">Identify events:</h3>
+          <h3 class="sub_section_title">(trigger after successful login/logout)</h3>
+          <div class="events_buttons_container">
+            <button class="event_btn purple_button" (click)="identifyUser(input1.value)">Identify</button>
+            <button class="event_btn gray_button" (click)="unidentify()">Unidentify</button>
+          </div>
+          <span class="identified_note"><b>{{isSignedIn === true ? 'Signed In!' : 'Not Signed In'}}</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

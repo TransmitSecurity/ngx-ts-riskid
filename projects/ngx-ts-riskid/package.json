@@ -1,0 +1,28 @@
+{
+  "name": "@transmitsecurity/ngx-ts-riskid",
+  "version": "1.1.7",
+  "description": "An Angular wrapper for the RiskID SDK",
+  "author": "RiskID Dev Team <rnd_riskid@transmitsecurity.com>",
+  "license" : "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TransmitSecurity/ngx-ts-riskid.git"
+  },
+  "homepage": "https://github.com/TransmitSecurity/ngx-ts-riskid.git#projects/ngx-ts-riskid/README.md",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "@angular/common": ">=9.x",
+    "@angular/core": ">=9.x"
+  },
+  "scripts": {
+    "ng": "ng",
+    "build": "ng build ngx-ts-riskid",
+    "build:dev": "ng build ngx-ts-riskid --configuration development",
+    "watch": "ng build ngx-ts-riskid --watch --configuration development",
+    "ci-version": "echo $npm_package_version",
+    "ci-audit": "improved-yarn-audit --min-severity=low --debug"
+  }
+}
