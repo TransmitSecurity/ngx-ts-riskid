@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     outputs:
       NPM_VERSION: ${{ steps.new_npm_package_version.outputs.NPM_VERSION }}
 
