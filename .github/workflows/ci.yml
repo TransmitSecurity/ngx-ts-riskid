@@ -56,7 +56,7 @@ jobs:
           retention-days: 30
           name: ngx-ts-riskid-npm-package
           path: |
-            transmitsecurity-ngx-ts-riskid-v*.tgz
+            dist/ngx-ts-riskid/transmitsecurity-ngx-ts-riskid-v*.tgz
 
       - name: Archive failure data
         if: ${{ failure() }}
