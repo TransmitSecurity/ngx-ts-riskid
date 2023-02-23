@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 1.1.8
+
+1. Update package license to MIT
+1. Setup upload to npmjs as public package
+
 ## Version 1.1.7
 
 1. Add `RiskidSdkConfig#sdkLoadUrl` to allow first party integration with custom URL for SDK loading
