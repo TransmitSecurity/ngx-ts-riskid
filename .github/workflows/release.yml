@@ -2,6 +2,7 @@ name: Release Artifact
 
 env:
   NODE_VERSION: 16.14
+  RUNID_VERSION_SUFFIX: ${{ github.run_id }}.${{ github.run_attempt }}
 
 on:
   release:
@@ -9,7 +10,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
+
+
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -33,14 +36,75 @@ jobs:
       - name: Build
         run: yarn run build-package
 
+      - name: Cache workspace
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}
+          key: ${{ runner.os }}-${{ env.RUNID_VERSION_SUFFIX }}
+
+      - name: Archive failure data
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: failure-data
+          path: |
+            /home/runner/.npm/_logs
+
+  publish_github:
+    runs-on: ubuntu-latest
+    needs: [build]
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Fetch cached workspace
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}
+          key: ${{ runner.os }}-${{ env.RUNID_VERSION_SUFFIX }}
+
       - run: |
           echo @transmitsecurity:https://npm.pkg.github.com/ > dist/ngx-ts-riskid/.npmrc
           echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' >> dist/ngx-ts-riskid/.npmrc
 
-      - run: yarn publish --access=public
+      - name: Publish to GitHub packages
+        run: yarn publish --access=public
         working-directory: ./dist/ngx-ts-riskid
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Archive failure data
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: failure-data
+          path: |
+            /home/runner/.npm/_logs
+
+  publish_npmjs:
+    runs-on: ubuntu-latest
+    needs: [build]
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Fetch cached workspace
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}
+          key: ${{ runner.os }}-${{ env.RUNID_VERSION_SUFFIX }}
+
+      - run: |
+          echo @transmitsecurity:https://registry.npmjs.org/ > dist/ngx-ts-riskid/.npmrc
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> dist/ngx-ts-riskid/.npmrc
+
+      - name: Publish to GitHub packages
+        run: yarn publish --access=public
+        working-directory: ./dist/ngx-ts-riskid
+        env:
+          NPM_TOKEN: ${{ secrets.NPMJS_UPLOAD_TOKEN }}
 
       - name: Archive failure data
         if: ${{ failure() }}
