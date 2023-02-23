@@ -108,7 +108,7 @@ jobs:
           key: ${{ runner.os }}-${{ env.RUNID_VERSION_SUFFIX }}
 
       - name: Publish to npmjs
-        run: yarn publish --access=public
+        run: npm publish --access=public
         working-directory: ./dist/ngx-ts-riskid
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_UPLOAD_TOKEN }}
