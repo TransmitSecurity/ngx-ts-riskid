@@ -18,7 +18,11 @@ export class AppComponent {
   }
 
   async loginTriggered() {
-    const actionResponse = await this.riskidService.triggerAction(NgxTsRiskidService.ACTION_TYPES.LOGIN);
+    const actionResponse = await this.riskidService.triggerAction(
+      NgxTsRiskidService.ACTION_TYPES.LOGIN, {
+        correlationId: (Math.random() + 1).toString(36).substring(2)
+      }
+    );
     const actionToken = actionResponse.actionToken;
       // Add code here to send the action and the received actionToken to your backend
   }

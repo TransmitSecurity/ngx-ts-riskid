@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
+import type { ActionEventOptions, TSAccountProtection as TSAPType } from '../types/web_sdk';
 import { SdkLoader } from './sdk-loader';
 
 /**
@@ -43,10 +44,10 @@ export interface RiskidSdkConfig {
 
 export const RISKID_SDK_CONFIG = 'RiskidSdkConfig';
 
-declare let RiskID: any;
-declare interface ActionResponse {
+export interface ActionResponse {
   actionToken?: string;
 }
+declare let TSAccountProtection: any;
 
 // @dynamic
 @Injectable()
@@ -57,8 +58,7 @@ export class NgxTsRiskidService {
   private serverUrl!: string;
   private onError!: (err: any) => void;
 
-  private myRiskID: any;
-
+  private myRiskID: TSAPType;
   public static readonly ACTION_TYPES = {
     LOGIN: 'login',
     LOGOUT: 'logout',
@@ -116,9 +116,9 @@ export class NgxTsRiskidService {
 
       try {
         await this.sdkLoader.loadSdk(this.RISKID_SDK_SCRIPT, this.sdkVersion, config.sdkLoadUrl);
-        this.myRiskID = new RiskID(this.serverUrl, this.clientId);
+        this.myRiskID = new TSAccountProtection(this.clientId, { serverPath: this.serverUrl } );
         try {
-          await this.myRiskID.init(this.userId);
+          await this.myRiskID.init({ userId: this.userId});
         } catch(err) {
           this.onError(
             this.buildSdkError(err, NgxTsRiskidService.SDK_INIT_ERR)
@@ -134,10 +134,15 @@ export class NgxTsRiskidService {
     return true;
   }
 
-  async triggerAction(actionType: string): Promise<ActionResponse | null> {
+  /**
+   * Reports a user action event to the SDK
+   * @param actionType Type of user action event that was predefined in the Transmit Security server
+   * @returns An object containing the `actionToken` response if call succeeded or `null` otherwise
+   */
+  async triggerAction(actionType: string, options?: ActionEventOptions): Promise<ActionResponse | null> {
     if (this.initialized) {
       try {
-        return await this.myRiskID?.triggerActionEvent(actionType);
+        return await this.myRiskID?.triggerActionEvent(actionType, options);
       } catch(err) {
         this.onError(
           this.buildSdkError(err, NgxTsRiskidService.SDK_TRIGGER_ACTION_ERR)
@@ -147,10 +152,17 @@ export class NgxTsRiskidService {
     return null;
   }
 
-  async identify(userId?: string): Promise<boolean> {
+  /**
+   * Sets the user context for all subsequent events in the browser session (or until the user is explicitly cleared)
+   * It should be set only after you've fully authenticated the user (including, for example, any 2FA that was required)
+   * @param userId Opaque identifier of the user in your system
+   * @param options Reserved for future use
+   * @returns Boolean indication if the call succeeded
+   */
+  async identify(userId?: string, options?: {}): Promise<boolean> {
     if (this.initialized) {
       try {
-        return await this.myRiskID?.identifyUser(userId);
+        return await this.myRiskID.setAuthenticatedUser(userId, options);
       } catch(err) {
         this.onError(
           this.buildSdkError(err, NgxTsRiskidService.SDK_IDENTIFY_ERR)
@@ -160,10 +172,15 @@ export class NgxTsRiskidService {
     return false;
   }
 
-  async unidentify(): Promise<boolean> {
+  /**
+   * Clears the user context for all subsequent events in the browser session
+   * @param options Reserved for future use
+   * @returns Boolean indication if the call succeeded
+   */
+  async unidentify(options?: {}): Promise<boolean> {
     if (this.initialized) {
       try {
-        return await this.myRiskID?.unidentifiedUser();
+        return await this.myRiskID.clearUser(options);
       } catch(err) {
         this.onError(
           this.buildSdkError(err, NgxTsRiskidService.SDK_UNIDENTIFY_ERR)
