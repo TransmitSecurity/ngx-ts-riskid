@@ -12,26 +12,30 @@ export interface InitOptions {
 export interface ConstructorOptions {
     /** Print logs to console */
     verbose?: boolean;
-    /** Your server URL
+    /**
+     * Your server URL
      *
-     * Default value is https://collect.riskid.security */
+     * Default value is https://collect.riskid.security
+     */
     serverPath?: string;
 }
 export interface ActionEventOptions {
     /** Any ID that could help relate the action with external context or session */
     correlationId?: string;
-    /** User ID of the not yet authenticated user, used to enhance risk and
+    /**
+     * User ID of the not yet authenticated user, used to enhance risk and
      * trust assessments. Once the user is authenticated,
-     * {@link TSAccountProtection.setAuthenticatedUser} should be called. */
+     * {@link TSAccountProtection.setAuthenticatedUser} should be called.
+     */
     claimedUserId?: string;
 }
 
 export declare class TSAccountProtection {
     /**
      *
-     Creates a new Account Protection SDK instance with your client context
-     @param clientId Your AccountProtection client identifier
-     @param options SDK configuration options
+     * Creates a new Account Protection SDK instance with your client context
+     * @param clientId Your AccountProtection client identifier
+     * @param options SDK configuration options
      */
     constructor(clientId: string, options?: ConstructorOptions);
     /**
