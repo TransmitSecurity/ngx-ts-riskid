@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { ActionEventOptions, TSAccountProtection } from 'projects/ngx-ts-riskid/types/web_sdk';
+import type { ActionEventOptions, TSAccountProtection as TSAPType } from '../types/web_sdk';
 import { SdkLoader } from './sdk-loader';
 
 /**
@@ -44,10 +44,12 @@ export interface RiskidSdkConfig {
 
 export const RISKID_SDK_CONFIG = 'RiskidSdkConfig';
 
-declare interface ActionResponse {
+export interface ActionResponse {
   actionToken?: string;
 }
+declare let TSAccountProtection: any;
 
+// @dynamic
 @Injectable()
 export class NgxTsRiskidService {
   private clientId!: string;
@@ -56,8 +58,7 @@ export class NgxTsRiskidService {
   private serverUrl!: string;
   private onError!: (err: any) => void;
 
-  private myRiskID: TSAccountProtection;
-
+  private myRiskID: TSAPType;
   public static readonly ACTION_TYPES = {
     LOGIN: 'login',
     LOGOUT: 'logout',

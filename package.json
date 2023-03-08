@@ -15,9 +15,9 @@
     "prestart": "yarn build",
     "start": "ng serve --open",
     "build": "ng build ngx-ts-riskid && ng build demo-app",
-    "build:dev": "ng build ngx-ts-riskid --configuration development && ng build demo-app --configuration development",
+    "build:dev": "ng build ngx-ts-riskid && ng build demo-app",
     "build-package": "ng build ngx-ts-riskid --configuration=production",
-    "watch": "ng build ngx-ts-riskid --watch --configuration development && ng build demo-app --watch --configuration development",
+    "watch": "ng build ngx-ts-riskid --watch && ng build demo-app --watch",
     "test": "ng test ngx-ts-riskid",
     "lint": "ng lint ngx-ts-riskid"
   },
