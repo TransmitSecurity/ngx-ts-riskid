@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.2.0
+
+**Note:** this version requires SDK >= `1.40.0`
+
+1. Update wrapper interface to expose SDK method options, e.g. `triggerAction`'s `correlationId`
+
 ## Version 1.1.8
 
 1. Update package license to MIT
