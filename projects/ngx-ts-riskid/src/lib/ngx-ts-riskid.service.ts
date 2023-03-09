@@ -131,7 +131,9 @@ export class NgxTsRiskidService {
           this.buildSdkError(err, NgxTsRiskidService.SDK_LOAD_ERR)
         );
       }
+
       this.initialized = true;
+      // this is called after `initialized` is set to true to allow invoking service functionalities
       if (onInit) {
         onInit(this);
       }

@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.2.1
+
+1. Introduce a new optional config element `onInit`, which behaves as a callback to allow executing logic when the service and Account Protection SDK are initialized
+
 ## Version 1.2.0
 
 **Note:** this version requires SDK >= `1.40.0`
