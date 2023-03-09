@@ -40,6 +40,13 @@ export interface RiskidSdkConfig {
    * @param error the exception object caught be the library
    */
   onError?: (error: unknown) => void;
+
+  /**
+   * a callback to be called after the library completes loading,
+   * When this is called the Transmit Security Account Protection SDK is fully functional
+   * @param service receives the initialized instance of the service to allow invoking it's APIs from callback
+   */
+  onInit?: (service: NgxTsRiskidService) => void;
 }
 
 export const RISKID_SDK_CONFIG = 'RiskidSdkConfig';
@@ -52,10 +59,6 @@ declare let TSAccountProtection: any;
 // @dynamic
 @Injectable()
 export class NgxTsRiskidService {
-  private clientId!: string;
-  private userId?: string;
-  private sdkVersion!: string;
-  private serverUrl!: string;
   private onError!: (err: any) => void;
 
   private myRiskID: TSAPType;
@@ -82,43 +85,42 @@ export class NgxTsRiskidService {
    */
   constructor(
     @Inject(RISKID_SDK_CONFIG)
-    config: RiskidSdkConfig | Promise<RiskidSdkConfig>,
+    private config: RiskidSdkConfig | Promise<RiskidSdkConfig>,
     private sdkLoader: SdkLoader,
   ) {
-    if (config instanceof Promise) {
-      config.then((conf) => {
-        this.initialize(conf);
-      }).catch((err) => {
-        console.log(
-          this.buildSdkError(err, NgxTsRiskidService.CONFIG_PROMISE_ERR)
-        );
-      });
-    } else {
-      this.initialize(config);
-    }
+    this.initialize();
   }
 
-  private buildSdkError(err: any, message: string) {
-    return {
-      message,
-      err
-    };
-  }
-
-  private async initialize(config: RiskidSdkConfig) {
+  // nothing really await this, this is purely to use `await`
+  private async initialize() {
     if(!this.initialized) {
-      this.clientId = config.clientId;
-      if(config.userId) { this.userId = config.userId; }
-      this.sdkVersion = config.sdkVersion || 'latest';
-      this.serverUrl = config.serverUrl || 'https://collect.riskid.security/';
-      const { onError = console.error } = config;
+      let config = this.config;
+      if (config instanceof Promise) {
+        try {
+          config = await config;
+        } catch (err) {
+          console.log(
+            this.buildSdkError(err, NgxTsRiskidService.CONFIG_PROMISE_ERR)
+          );
+          return;
+        }
+      }
+
+      const {
+        clientId,
+        userId,
+        sdkVersion = 'latest',
+        serverUrl = 'https://collect.riskid.security/',
+        onError = console.error,
+        onInit
+      } = config;
       this.onError = onError;
 
       try {
-        await this.sdkLoader.loadSdk(this.RISKID_SDK_SCRIPT, this.sdkVersion, config.sdkLoadUrl);
-        this.myRiskID = new TSAccountProtection(this.clientId, { serverPath: this.serverUrl } );
+        await this.sdkLoader.loadSdk(this.RISKID_SDK_SCRIPT, sdkVersion, config.sdkLoadUrl);
+        this.myRiskID = new TSAccountProtection(clientId, { serverPath: serverUrl } );
         try {
-          await this.myRiskID.init({ userId: this.userId});
+          await this.myRiskID.init({ userId });
         } catch(err) {
           this.onError(
             this.buildSdkError(err, NgxTsRiskidService.SDK_INIT_ERR)
@@ -130,8 +132,10 @@ export class NgxTsRiskidService {
         );
       }
       this.initialized = true;
+      if (onInit) {
+        onInit(this);
+      }
     }
-    return true;
   }
 
   /**
@@ -188,5 +192,12 @@ export class NgxTsRiskidService {
       }
     }
     return false;
+  }
+
+  private buildSdkError(err: any, message: string) {
+    return {
+      message,
+      err
+    };
   }
 }
