@@ -17,6 +17,9 @@ import { NgxTsRiskidModule, RiskidSdkConfig, RISKID_SDK_CONFIG } from '@transmit
         userId: 'demo-user-id',
         onError: (err: Error) => {
           console.log(err);
+        },
+        onInit: (service) => {
+          console.log('Service initialized, %s', service.constructor.name);
         }
       } as RiskidSdkConfig,
     }
