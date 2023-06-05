@@ -98,7 +98,7 @@ export class AppComponent {
       // Add code here to send the action and the received actionToken to your backend
   }
 
-    async checkoutTriggered() {
+  async checkoutTriggered() {
     const actionResponse = await this.riskidService.triggerAction(NgxTsRiskidService.ACTION_TYPES.CHECKOUT);
     const actionToken = actionResponse.actionToken;
       // Add code here to send the action and the received actionToken to your backend
