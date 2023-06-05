@@ -98,6 +98,36 @@ export class AppComponent {
       // Add code here to send the action and the received actionToken to your backend
   }
 
+    async checkoutTriggered() {
+    const actionResponse = await this.riskidService.triggerAction(NgxTsRiskidService.ACTION_TYPES.CHECKOUT);
+    const actionToken = actionResponse.actionToken;
+      // Add code here to send the action and the received actionToken to your backend
+  }
+
+  async accountChangeTriggered() {
+    const actionResponse = await this.riskidService.triggerAction(NgxTsRiskidService.ACTION_TYPES.ACCOUNT_DETAILS_CHANGE);
+    const actionToken = actionResponse.actionToken;
+      // Add code here to send the action and the received actionToken to your backend
+  }
+
+  async accountAuthChangeTriggered() {
+    const actionResponse = await this.riskidService.triggerAction(NgxTsRiskidService.ACTION_TYPES.ACCOUNT_AUTH_CHANGE);
+    const actionToken = actionResponse.actionToken;
+      // Add code here to send the action and the received actionToken to your backend
+  }
+
+  async withdrawTriggered() {
+    const actionResponse = await this.riskidService.triggerAction(NgxTsRiskidService.ACTION_TYPES.WITHDRAW);
+    const actionToken = actionResponse.actionToken;
+      // Add code here to send the action and the received actionToken to your backend
+  }
+
+  async creditsChangeTriggered() {
+    const actionResponse = await this.riskidService.triggerAction(NgxTsRiskidService.ACTION_TYPES.CREDITS_CHANGE);
+    const actionToken = actionResponse.actionToken;
+      // Add code here to send the action and the received actionToken to your backend
+  }
+
   async identifyUser(userId: string) {
       await this.riskidService.identify(userId); // invoked after successful authentication
       this.isSignedIn = true;
