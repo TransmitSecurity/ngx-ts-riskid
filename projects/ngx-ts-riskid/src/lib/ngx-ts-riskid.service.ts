@@ -67,7 +67,12 @@ export class NgxTsRiskidService {
     LOGOUT: 'logout',
     REGISTER: 'register',
     TRANSACTION: 'transaction',
-    PASSWORD_RESET: 'password_reset'
+    PASSWORD_RESET: 'password_reset',
+    CHECKOUT: 'checkout',
+    ACCOUNT_DETAILS_CHANGE: 'account_details_change',
+    ACCOUNT_AUTH_CHANGE: 'account_auth_change',
+    WITHDRAW: 'withdraw',
+    CREDITS_CHANGE: 'credits_change',
   };
 
   private initialized = false;

@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.2.2
+
+1. Align recommended action types to all basic DRS action types from the [documentation](https://developer.transmitsecurity.com/guides/risk/quick_start_web/#:~:text=event%20handler).%20The-,%5BACTION_TYPE%5D,%2C,-account_details_change)
+
 ## Version 1.2.1
 
 1. Introduce a new optional config element `onInit`, which behaves as a callback to allow executing logic when the service and Account Protection SDK are initialized
