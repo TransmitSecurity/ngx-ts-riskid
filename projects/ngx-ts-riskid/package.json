@@ -1,6 +1,6 @@
 {
   "name": "@transmitsecurity/ngx-ts-riskid",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "An Angular wrapper for the RiskID SDK",
   "author": "RiskID Dev Team <rnd_riskid@transmitsecurity.com>",
   "license" : "SEE LICENSE IN LICENSE",
@@ -11,8 +11,8 @@
   "homepage": "https://github.com/TransmitSecurity/ngx-ts-riskid/blob/main/projects/ngx-ts-riskid/README.md",
   "dependencies": {},
   "peerDependencies": {
-    "@angular/common": ">=10.x",
-    "@angular/core": ">=10.x"
+    "@angular/common": ">=13.x",
+    "@angular/core": ">=13.x"
   },
   "scripts": {
     "ng": "ng",

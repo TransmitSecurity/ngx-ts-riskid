@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 2.0.0
+
+1. Upgrade to Angular 13
+
 ## Version 1.2.2
 
 1. Align recommended action types to all basic DRS action types from the [documentation](https://developer.transmitsecurity.com/guides/risk/quick_start_web/#:~:text=event%20handler%29.%20The-,%5BACTION_TYPE%5D,-can%20be%20either)
