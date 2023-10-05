@@ -2,7 +2,7 @@
   "name": "@transmitsecurity/root-ngx-ts-riskid",
   "version": "1.0.1",
   "private": true,
-  "license" : "SEE LICENSE IN projects/ngx-ts-riskid/LICENSE",
+  "license": "SEE LICENSE IN projects/ngx-ts-riskid/LICENSE",
   "author": "RiskID Dev Team <rnd_riskid@transmitsecurity.com>",
   "repository": {
     "type": "git",
@@ -22,19 +22,19 @@
     "lint": "ng lint ngx-ts-riskid"
   },
   "dependencies": {
-    "@angular/common": "~9.1.13",
-    "@angular/compiler": "~9.1.13",
-    "@angular/core": "~9.1.13",
-    "@angular/platform-browser": "~9.1.13",
-    "@angular/platform-browser-dynamic": "~9.1.13",
+    "@angular/common": "~10.2.5",
+    "@angular/compiler": "~10.2.5",
+    "@angular/core": "~10.2.5",
+    "@angular/platform-browser": "~10.2.5",
+    "@angular/platform-browser-dynamic": "~10.2.5",
     "rxjs": "~6.5.4",
     "zone.js": "~0.11.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.15",
-    "@angular-devkit/build-ng-packagr": "~0.901.15",
-    "@angular/cli": "10.2.1",
-    "@angular/compiler-cli": "~9.1.13",
+    "@angular-devkit/build-angular": "~0.1002.4",
+    "@angular-devkit/build-ng-packagr": "~0.1002.4",
+    "@angular/cli": "10.2.4",
+    "@angular/compiler-cli": "~10.2.5",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "codelyzer": "^5.1.2",
@@ -44,8 +44,8 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
-    "ng-packagr": "^9.0.0",
+    "ng-packagr": "^10.1.2",
     "tslint": "~6.1.0",
-    "typescript": "~3.8.3"
+    "typescript": "~4.0.8"
   }
 }
