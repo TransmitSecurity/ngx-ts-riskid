@@ -3,7 +3,7 @@
   "version": "1.2.2",
   "description": "An Angular wrapper for the RiskID SDK",
   "author": "RiskID Dev Team <rnd_riskid@transmitsecurity.com>",
-  "license" : "SEE LICENSE IN LICENSE",
+  "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TransmitSecurity/ngx-ts-riskid.git"

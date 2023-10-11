@@ -7,31 +7,31 @@ import { SdkLoader } from './sdk-loader';
  */
 
 @NgModule({
-  imports: [],
-  providers: [
-    NgxTsRiskidService,
-    SdkLoader
-  ]
+    imports: [],
+    providers: [
+        NgxTsRiskidService,
+        SdkLoader
+    ]
 })
 export class NgxTsRiskidModule {
-  public static initialize(config: RiskidSdkConfig): ModuleWithProviders<NgxTsRiskidModule> {
-    return {
-      ngModule: NgxTsRiskidModule,
-      providers: [
-        SdkLoader,
-        NgxTsRiskidService,
-        {
-          provide: RISKID_SDK_CONFIG,
-          useValue: config
-        }
-      ]
-    };
-  }
-
-  constructor(@Optional() @SkipSelf() parentModule: NgxTsRiskidModule) {
-    if (parentModule) {
-      throw new Error(
-        'NgxTsRiskidModule is already loaded. Import it in the AppModule only');
+    public static initialize(config: RiskidSdkConfig): ModuleWithProviders<NgxTsRiskidModule> {
+        return {
+            ngModule: NgxTsRiskidModule,
+            providers: [
+                SdkLoader,
+                NgxTsRiskidService,
+                {
+                    provide: RISKID_SDK_CONFIG,
+                    useValue: config
+                }
+            ]
+        };
     }
-  }
+
+    constructor(@Optional() @SkipSelf() parentModule: NgxTsRiskidModule) {
+        if (parentModule) {
+            throw new Error(
+                'NgxTsRiskidModule is already loaded. Import it in the AppModule only');
+        }
+    }
 }
