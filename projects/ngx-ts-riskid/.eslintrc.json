@@ -1,13 +1,8 @@
 {
   "extends": "../../.eslintrc.json",
-  "ignorePatterns": [
-    "!**/*"
-  ],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
         "project": [
           "projects/ngx-ts-riskid/tsconfig.lib.json",
@@ -35,10 +30,13 @@
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
-      "rules": {}
+      "files": ["*.html"],
+      "parser": "@angular-eslint/template-parser",
+      "parserOptions": {
+        "project": "./tsconfig.lib.json",
+        "sourceType": "module"
+      },
+      "plugins": ["@angular-eslint/template"]
     }
   ]
 }
