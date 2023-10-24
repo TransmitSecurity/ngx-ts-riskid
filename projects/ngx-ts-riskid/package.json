@@ -1,6 +1,6 @@
 {
   "name": "@transmitsecurity/ngx-ts-riskid",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "An Angular wrapper for the RiskID SDK",
   "author": "RiskID Dev Team <rnd_riskid@transmitsecurity.com>",
   "license": "SEE LICENSE IN LICENSE",

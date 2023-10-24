@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 3.0.0
+
+1. Upgrade to Angular 16
+
 ## Version 2.0.0
 
 1. Upgrade to Angular 13
