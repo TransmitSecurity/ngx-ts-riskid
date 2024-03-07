@@ -28,7 +28,7 @@ export interface RiskidSdkConfig {
 
   /**
    * A base URL to use for submission of device telemetry and actions, used for 1st-party integration
-   * Default: https://collect.riskid.security
+   * Default: https://api.transmitsecurity.io/risk-collect
    */
   serverUrl?: string;
 
@@ -120,7 +120,7 @@ export class NgxTsRiskidService {
         clientId,
         userId,
         sdkVersion = 'latest',
-        serverUrl = 'https://collect.riskid.security/',
+        serverUrl = 'https://api.transmitsecurity.io/risk-collect/',
         onError = console.error,
         onInit,
       } = config;

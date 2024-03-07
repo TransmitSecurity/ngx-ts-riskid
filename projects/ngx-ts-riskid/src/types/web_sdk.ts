@@ -15,7 +15,7 @@ export interface ConstructorOptions {
   /**
    * Your server URL
    *
-   * Default value is https://collect.riskid.security
+   * Default value is https://api.transmitsecurity.io/risk-collect/
    */
   serverPath?: string;
 }
