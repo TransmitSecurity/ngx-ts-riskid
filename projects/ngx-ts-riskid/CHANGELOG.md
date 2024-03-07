@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 3.0.1
+
+1. Update default SDK's `serverUrl` to the gateway URL (`'https://api.transmitsecurity.io/risk-collect/'`)
+2. If you have CSP headers configured:
+  1. Update the `scriptSrc` header to include `https://cdn.riskid.security/`
+  2. Update the `connectSrc` header to include as well `https://api.transmitsecurity.io/risk-collect/`
+
 ## Version 3.0.0
 
 1. Upgrade to Angular 16
