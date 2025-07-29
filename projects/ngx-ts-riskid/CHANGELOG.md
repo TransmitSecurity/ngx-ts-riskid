@@ -42,7 +42,7 @@
 ## Version 1.0.5
 
 1. Use production CDN to load SDK
-1. Default SDK's `serverUrl` to the production URL (`'https://collect.riskid.security/'`)
+1. Default SDK's `serverUrl` to the production URL (`'https://api.transmitsecurity.io/risk-collect/'`)
 1. Default SDK's `version` to `'latest'`
 1. Changed `RiskidSdkConfig.tenantId` to `RiskidSdkConfig.clientId` to align with SDK interface
 
@@ -54,7 +54,7 @@ When bootstrapping the angular module:
 1. Change the `tenantId` entity to `clientId` (this is a good time to ensure you are using an up to date ClientID)
 1. If you have CSP headers configured:
    1. Update the `scriptSrc` header to include `https://cdn.riskid.security/`
-   1. Update the `connectSrc` header to include `https://collect.riskid.security/`
+   1. Update the `connectSrc` header to include `https://api.transmitsecurity.io/risk-collect/`
 
 You should end up with something like the following:
 

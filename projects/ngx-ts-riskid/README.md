@@ -32,7 +32,7 @@ import { NgxTsRiskidModule, RiskidSdkConfig, RISKID_SDK_CONFIG } from '@transmit
         clientId: 'abc.123.demo-tenant.riskid.dev',
         userId: 'demo-user-id', // optional, in case the userId is known
         sdkVersion: 'latest', // or use a strict version provided by RiskID
-        serverUrl: 'https://collect.riskid.security/',
+        serverUrl: 'https://api.transmitsecurity.io/risk-collect/',
         onError: (err: Error) => {
           console.log(err);
         },

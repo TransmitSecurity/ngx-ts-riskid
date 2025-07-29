@@ -127,7 +127,7 @@ export class NgxTsRiskidService {
         clientId,
         userId,
         sdkVersion = 'latest',
-        serverUrl = 'https://collect.riskid.security/',
+        serverUrl = 'https://api.transmitsecurity.io/risk-collect/',
         onError = console.error,
         onInit,
         enableSessionToken,
