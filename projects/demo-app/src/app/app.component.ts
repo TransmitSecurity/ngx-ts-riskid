@@ -87,6 +87,6 @@ export class AppComponent {
   }
 
   async getSessionToken() {
-    await this.riskidService.getSessionToken();
- }
+     await this.riskidService.getSessionToken();
+  }
 }
