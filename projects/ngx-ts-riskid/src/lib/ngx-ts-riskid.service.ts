@@ -50,12 +50,6 @@ export interface RiskidSdkConfig {
    * @param service receives the initialized instance of the service to allow invoking it's APIs from callback
    */
   onInit?: (service: NgxTsRiskidService) => void;
-
-  /**
-   * Setting that determines if session token is enabled
-   * Default: false
-   */
-  enableSessionToken?: boolean;
 }
 
 export const RISKID_SDK_CONFIG = 'RiskidSdkConfig';
@@ -130,7 +124,6 @@ export class NgxTsRiskidService {
         serverUrl = 'https://api.transmitsecurity.io/risk-collect/',
         onError = console.error,
         onInit,
-        enableSessionToken,
       } = config;
       this.onError = onError;
 
@@ -143,7 +136,6 @@ export class NgxTsRiskidService {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
         this.myRiskID = new TSAccountProtection(clientId, {
           serverPath: serverUrl,
-          enableSessionToken,
         });
         try {
           await this.myRiskID.init({ userId });
@@ -221,24 +213,6 @@ export class NgxTsRiskidService {
       }
     }
     return false;
-  }
-
-  /**
-   * Returns the session token for the current user
-   * @param options Reserved for future use
-   * @returns The session token as a string if call succeeded or `null` otherwise
-   */
-  async getSessionToken(options?: object): Promise<string | null> {
-    if (this.initialized) {
-      try {
-        return await this.myRiskID.getSessionToken(options);
-      } catch (err) {
-        this.onError(
-          this.buildSdkError(err, NgxTsRiskidService.SDK_GET_SESSION_TOKEN_ERR)
-        );
-      }
-    }
-    return null;
   }
 
   private buildSdkError(err: any, message: string) {

@@ -137,9 +137,5 @@ export class AppComponent {
       await this.riskidService.unidentify(); // invoked after successful logout
       this.isSignedIn = false;
   }
-
-  async getSessionToken() {
-     await this.riskidService.getSessionToken();
-  }
 }
 ```
