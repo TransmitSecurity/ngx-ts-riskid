@@ -19,6 +19,7 @@
     "build-package": "ng build ngx-ts-riskid --configuration=production",
     "watch": "ng build ngx-ts-riskid --watch && ng build demo-app --watch",
     "test": "ng test ngx-ts-riskid",
+    "test:ci": "ng test ngx-ts-riskid --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint"
   },
   "dependencies": {
