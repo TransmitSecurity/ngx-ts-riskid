@@ -67,4 +67,11 @@ export declare class TSAccountProtection {
    * @returns Indicates if the call succeeded
    */
   clearUser(options?: {}): Promise<boolean>;
+
+  /**
+   * Returns the session token for the current user
+   * @param options Reserved for future use
+   * @returns The session token as a string if call succeeded or `null` otherwise
+   */
+  getSessionToken(options?: {}): Promise<string | null>;
 }

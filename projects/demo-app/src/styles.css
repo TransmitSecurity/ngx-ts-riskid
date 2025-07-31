@@ -214,3 +214,11 @@ textarea {
 .black_button:hover {
   background-color: #292929;
 }
+
+.yellow_button {
+  background-color: #f1c40f;
+}
+
+.yellow_button:hover {
+  background-color: #d4a90e;
+}
