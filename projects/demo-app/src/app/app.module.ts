@@ -20,7 +20,8 @@ import { NgxTsRiskidModule, RiskidSdkConfig, RISKID_SDK_CONFIG } from '@transmit
         },
         onInit: (service) => {
           console.log('Service initialized, %s', service.constructor.name);
-        }
+        },
+        enableSessionToken: true,
       } as RiskidSdkConfig,
     }
   ],

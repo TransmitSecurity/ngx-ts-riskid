@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 3.1.0
+
+1. Expose getSessionToken method on SDK 
+
 ## Version 3.0.0
 
 1. Upgrade to Angular 16
