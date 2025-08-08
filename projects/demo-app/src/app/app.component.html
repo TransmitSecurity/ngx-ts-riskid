@@ -30,6 +30,7 @@
           <div class="events_buttons_container">
             <button class="event_btn purple_button" (click)="identifyUser(input1.value)">Identify</button>
             <button class="event_btn gray_button" (click)="unidentify()">Unidentify</button>
+            <button class="event_btn yellow_button" (click)="getSessionToken()">Get Session Token</button>
           </div>
           <span class="identified_note"><b>{{isSignedIn === true ? 'Signed In!' : 'Not Signed In'}}</b></span>
         </div>
