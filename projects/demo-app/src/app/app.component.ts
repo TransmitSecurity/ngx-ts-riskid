@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { NgxTsRiskidService } from '@transmitsecurity/ngx-ts-riskid';
 
 @Component({
-  selector: 'app-root-demo',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root-demo',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    standalone: false
 })
 export class AppComponent {
   isSignedIn = false;
@@ -84,7 +85,7 @@ export class AppComponent {
       await this.riskidService.unidentify(); // invoked after successful logout
       this.isSignedIn = false;
   }
-
+  
   async getSessionToken() {
     await this.riskidService.getSessionToken();
  }
