@@ -95,8 +95,7 @@ export class NgxTsRiskidService {
   private static readonly SDK_TRIGGER_ACTION_ERR = 'Error sending action event';
   private static readonly SDK_IDENTIFY_ERR = 'Error sending identify event';
   private static readonly SDK_UNIDENTIFY_ERR = 'Error sending unidentify event';
-  private static readonly SDK_GET_SESSION_TOKEN_ERR =
-    'Error getting session token';
+  private static readonly SDK_GET_SESSION_TOKEN_ERR = 'Error getting session token';
 
   /**
    * @param config A `RiskidSdkConfig` object or a `Promise` that resolves to a `RiskidSdkConfig` object
