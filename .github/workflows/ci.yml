@@ -21,6 +21,9 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Set min-release-age
+        run: echo "min-release-age=7d" >> .npmrc
+
       - name: Install yarn
         run: npm install --global yarn
 
