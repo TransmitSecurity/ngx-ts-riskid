@@ -26,6 +26,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set min-release-age
+        run: echo "min-release-age=7d" >> .npmrc
+
       - name: Install yarn
         run: npm install --global yarn
 
