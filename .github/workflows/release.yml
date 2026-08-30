@@ -90,7 +90,7 @@ jobs:
     needs: [build]
     permissions:
       contents: read
-      packages: write
+      id-token: write
 
     steps:
       - name: Use Node.js v${{ env.NODE_VERSION }}
@@ -105,11 +105,19 @@ jobs:
           path: ${{ github.workspace }}
           key: ${{ runner.os }}-${{ env.RUNID_VERSION_SUFFIX }}
 
+      - name: Ensure npm >= 11.5.1 (Trusted Publishing requirement)
+        run: |
+          CURRENT_NPM=$(npm -v)
+          MIN_NPM=11.5.1
+          if [ "$(printf '%s\n' "$MIN_NPM" "$CURRENT_NPM" | sort -V | tail -n1)" = "$CURRENT_NPM" ]; then
+            echo "npm $CURRENT_NPM already satisfies >= $MIN_NPM"
+          else
+            npm install -g npm@$MIN_NPM
+          fi
+
       - name: Publish to npmjs
         run: npm publish --access=public
         working-directory: ./dist/ngx-ts-riskid
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_UPLOAD_TOKEN }}
 
       - name: Archive failure data
         if: ${{ failure() }}
